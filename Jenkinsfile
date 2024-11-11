@@ -14,3 +14,11 @@ pipeline {
             }
          }
     }
+    stage('Build Docker Image') {
+    steps {
+        script {
+    // Build the Docker image
+            sh "docker build -t ${params.DOCKER_IMAGE_NAME}:latest . -f Dockerfile"
+            }
+        }
+    }
