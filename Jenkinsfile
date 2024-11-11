@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     parameters {
-        string(name: 'DOCKER_IMAGE_NAME', defaultValue: 'choco-image', description: 'Name of the Docker image')
+        string(name: 'Docker_Image_Name', defaultValue: 'choco-image', description: 'Name of the Docker image')
     }
          
     
@@ -18,7 +18,7 @@ pipeline {
     steps {
         script {
     // Build the Docker image
-            sh "docker build -t ${params.DOCKER_IMAGE_NAME}:latest . -f Dockerfile"
+            sh "docker build -t ${params.Docker_Image_Name}:latest . -f Dockerfile"
             }
         }
     }
