@@ -23,6 +23,19 @@ pipeline {
                 }
             }
         }
+        stage ('Push image to Docker Hub') {
+            steps {
+                script {
+                    withCredentials([ string(credentialsId:'PAT_Docker', variable: 'DOCKER_PAT')]) {
+                        sh "echo '$(DOCKER_PAT)' | docker login -u surya215 --password-stdin"
 
+                        sh "docker image tag ${params.Docker_Image_Name}:latest surya215/${params.Docker_Image_Name}:latest"
+                        sh "docker push surya215/${params.Docker_Image_Name}:latest"
+                       
+                    }
+                
+                }
+            }
+        }
     }   
 }
