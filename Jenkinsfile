@@ -18,7 +18,7 @@ pipeline {
     steps {
         script {
     // Build the Docker image
-            sh "docker build -t -f Dockerfile${params.Docker_Image_Name}:latest ."
+            sh "docker build -t ${params.Docker_Image_Name}:latest ."
             }
         }
     }
