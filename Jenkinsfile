@@ -4,7 +4,11 @@
     parameters {
         string(name: 'Docker_Image_Name', defaultValue: 'choco', description: 'Name of the Docker image')
     }
-
+    environment {
+        AWS_ACCESS_KEY_ID      = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY  = credentials('aws-secret-access-key')
+        AWS_DEFAULT_REGION     = 'us-west-2c'  // Set AWS region
+    }
     
     stages {
         stage('Checkout Application Code') {
