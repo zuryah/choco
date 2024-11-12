@@ -27,7 +27,7 @@
             steps {
                 script {
                     withCredentials([ usernamePassword(credentialsId:'PAT_Docker', usernameVariable: 'DOCKER_USERNAME')]) {
-                        sh "echo '${DOCKER_PASSWORD}' | docker login -u ${DOCKER_USERNAME} --password-stdin"
+                        sh "echo '${DOCKER_PAT}' | docker login -u ${DOCKER_USERNAME} --password-stdin"
                         
                         // Tag and push the built Docker image to Docker Hub
                         sh "docker tag ${params.Docker_Image_Name}:latest ${DOCKER_USERNAME}/${params.Docker_Image_Name}:latest"
