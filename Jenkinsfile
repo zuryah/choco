@@ -26,7 +26,7 @@
         stage ('Push image to Docker Hub') {
             steps {
                 script {
-                    withCredentials([ usernamePassword(credentialsId:'PAT_Docker', usernameVariable: 'DOCKER_USERNAME')]) {
+                    withCredentials([ usernamePassword(credentialsId:'PAT_Docker', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PAT')]) {
                         sh "echo '${DOCKER_PAT}' | docker login -u ${DOCKER_USERNAME} --password-stdin"
                         
                         // Tag and push the built Docker image to Docker Hub
